@@ -54,6 +54,7 @@ def modelTrain(net,trn_loader,val_loader,options_dict):
         h = net.initHidden(options_dict['batch_size'])
         h = h.cuda()
 
+        best_result = 0.0
         # Training:
         # ---------
         for batch, y in enumerate(trn_loader):
@@ -122,6 +123,13 @@ def modelTrain(net,trn_loader,val_loader,options_dict):
                     print('Validation-- Top-1 accuracy = {0:5.4f}'.format(
                         running_val_top_1[-1])
                     )
+
+                # Save checkpoint
+                if running_val_top_1[-1] > best_result:
+                    best_result = running_val_top_1[-1]
+                    torch.save(net.state_dict(), f'./best_n5.ckpt')
+                    print(f'Record the best result with score: {best_result}')
+                
                 net.train()
 
         current_lr = scheduler.get_lr()[-1]

@@ -27,14 +27,14 @@ options_dict = {
     'test_ratio': 1,
     'img_mean': (0.4905,0.4938,0.5285),
     'img_std':(0.05922,0.06468,0.06174),
-    'trn_data_file': 'train_set.csv',
-    'val_data_file': 'val_set.csv',
+    'trn_data_file': './dev_dataset_csv/train.csv',
+    'val_data_file': './dev_dataset_csv/valid.csv',
     'results_file': 'five_beam_results_beam_only_2layeers.mat',
 
     # Net:
     'net_type':'gru',
     'cb_size': 128,  # Beam codebook size
-    'out_seq': 1,  # Length of the predicted sequence
+    'out_seq': 5,  # Length of the predicted sequence
     'inp_seq': 8, # Length of inp beam and image sequence
     'embed_dim': 50,  # Dimension of the embedding space (same for images and beam indices)
     'hid_dim': 20,  # Dimension of the hidden state of the RNN
